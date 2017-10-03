@@ -10,4 +10,7 @@ const EmployeeList = () => {
     );
 };
 
-export default EmployeeList;
+export default createContainer(() => {
+    Meteor.subscribe('employees');
+    return { employees: Employees.find({}).fetch() }
+}, EmployeeList);
